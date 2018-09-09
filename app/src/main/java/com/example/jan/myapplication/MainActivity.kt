@@ -172,6 +172,7 @@ class MainActivity : AppCompatActivity() {
                 var expression: Expression = Expression(tvProcess.text.toString())
                 var result: BigDecimal = expression.eval()
                 tvResult.setText(result.toString())
+                //ok
             }
         }
     }
