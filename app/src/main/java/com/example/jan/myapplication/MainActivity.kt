@@ -122,9 +122,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
         btn0.setOnClickListener {
+            var buffer = tvProcess.text
+            buffer = buffer.substring(0,buffer.length-1)
             if (tvProcess.text.equals("0")) {
                 tvProcess.setText("0")
-
+            }
+            else if (buffer.endsWith('*') && tvProcess.text.endsWith("0")) {
+            }
+            else if (buffer.endsWith('/') && tvProcess.text.endsWith("0")) {
+            }
+            else if (buffer.endsWith('-') && tvProcess.text.endsWith("0")) {
+            }
+            else if (buffer.endsWith('+') && tvProcess.text.endsWith("0")) {
             } else {
                 tvProcess.setText(tvProcess.text.toString() + "0")
             }
@@ -133,11 +142,78 @@ class MainActivity : AppCompatActivity() {
 
         //*************Functional Buttons on-click function********************
 
-        btnDivide.setOnClickListener { tvProcess.setText(tvProcess.text.toString() + "/") }
-        btnMultiply.setOnClickListener { tvProcess.setText(tvProcess.text.toString() + "*") }
-        btnMinus.setOnClickListener { tvProcess.setText(tvProcess.text.toString() + "-") }
-        btnPlus.setOnClickListener { tvProcess.setText(tvProcess.text.toString() + "+") }
-        btnPoint.setOnClickListener { tvProcess.setText(tvProcess.text.toString() + ".") }
+        btnMultiply.setOnClickListener {
+            if (tvProcess.text.endsWith('*')) {
+            }
+            else if (tvProcess.text.endsWith('/')) {
+            }
+            else if (tvProcess.text.endsWith('+')) {
+            }
+            else if (tvProcess.text.endsWith('-')) {
+            }
+            else if (tvProcess.text.endsWith('.')) {
+            } else {
+                tvProcess.setText(tvProcess.text.toString() + "*")
+            }
+        }
+
+        btnPoint.setOnClickListener {
+            if (tvProcess.text.endsWith('*')) {
+            }
+            else if (tvProcess.text.endsWith('/')) {
+            }
+            else if (tvProcess.text.endsWith('+')) {
+            }
+            else if (tvProcess.text.endsWith('-')) {
+            }
+            else if (tvProcess.text.endsWith('.')) {
+            } else {
+                tvProcess.setText(tvProcess.text.toString() + ".")
+            }
+        }
+        btnDivide.setOnClickListener {
+            if (tvProcess.text.endsWith('*')) {
+            }
+            else if (tvProcess.text.endsWith('/')) {
+            }
+            else if (tvProcess.text.endsWith('+')) {
+            }
+            else if (tvProcess.text.endsWith('-')) {
+            }
+            else if (tvProcess.text.endsWith('.')) {
+            } else {
+                tvProcess.setText(tvProcess.text.toString() + "/")
+            }
+        }
+        btnMinus.setOnClickListener {
+            if (tvProcess.text.endsWith('*')) {
+            }
+            else if (tvProcess.text.endsWith('/')) {
+            }
+            else if (tvProcess.text.endsWith('+')) {
+            }
+            else if (tvProcess.text.endsWith('-')) {
+            }
+            else if (tvProcess.text.endsWith('.')) {
+            }
+            else {
+                tvProcess.setText(tvProcess.text.toString() + "-")
+            }
+        }
+        btnPlus.setOnClickListener {
+            if (tvProcess.text.endsWith('*')) {
+            }
+            else if (tvProcess.text.endsWith('/')) {
+            }
+            else if (tvProcess.text.endsWith('+')) {
+            }
+            else if (tvProcess.text.endsWith('-')) {
+            }
+            else if (tvProcess.text.endsWith('.')) {
+            } else {
+                tvProcess.setText(tvProcess.text.toString() + "+")
+            }
+        }
         btnPercent.setOnClickListener { tvProcess.setText(tvProcess.text.toString() + "/100") }
 
         btnClear.setOnClickListener {
@@ -172,7 +248,6 @@ class MainActivity : AppCompatActivity() {
                 var expression: Expression = Expression(tvProcess.text.toString())
                 var result: BigDecimal = expression.eval()
                 tvResult.setText(result.toString())
-                //ok
             }
         }
     }
