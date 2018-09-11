@@ -67,11 +67,11 @@ class MainActivity : AppCompatActivity() {
 
         btn3.setOnClickListener {
             if (tvProcess.text.equals("0")) {
-            tvProcess.setText("3")
+                tvProcess.setText("3")
 
-        } else {
-            tvProcess.setText(tvProcess.text.toString() + "3")
-        }
+            } else {
+                tvProcess.setText(tvProcess.text.toString() + "3")
+            }
         }
 
         btn4.setOnClickListener {
@@ -123,17 +123,13 @@ class MainActivity : AppCompatActivity() {
         }
         btn0.setOnClickListener {
             var buffer = tvProcess.text
-            buffer = buffer.substring(0,buffer.length-1)
+            buffer = buffer.substring(0, buffer.length - 1)
             if (tvProcess.text.equals("0")) {
                 tvProcess.setText("0")
-            }
-            else if (buffer.endsWith('*') && tvProcess.text.endsWith("0")) {
-            }
-            else if (buffer.endsWith('/') && tvProcess.text.endsWith("0")) {
-            }
-            else if (buffer.endsWith('-') && tvProcess.text.endsWith("0")) {
-            }
-            else if (buffer.endsWith('+') && tvProcess.text.endsWith("0")) {
+            } else if (buffer.endsWith('*') && tvProcess.text.endsWith("0")) {
+            } else if (buffer.endsWith('/') && tvProcess.text.endsWith("0")) {
+            } else if (buffer.endsWith('-') && tvProcess.text.endsWith("0")) {
+            } else if (buffer.endsWith('+') && tvProcess.text.endsWith("0")) {
             } else {
                 tvProcess.setText(tvProcess.text.toString() + "0")
             }
@@ -143,73 +139,33 @@ class MainActivity : AppCompatActivity() {
         //*************Functional Buttons on-click function********************
 
         btnMultiply.setOnClickListener {
-            if (tvProcess.text.endsWith('*')) {
-            }
-            else if (tvProcess.text.endsWith('/')) {
-            }
-            else if (tvProcess.text.endsWith('+')) {
-            }
-            else if (tvProcess.text.endsWith('-')) {
-            }
-            else if (tvProcess.text.endsWith('.')) {
+            if (isLastOperator(tvProcess)) {
             } else {
                 tvProcess.setText(tvProcess.text.toString() + "*")
             }
         }
 
         btnPoint.setOnClickListener {
-            if (tvProcess.text.endsWith('*')) {
-            }
-            else if (tvProcess.text.endsWith('/')) {
-            }
-            else if (tvProcess.text.endsWith('+')) {
-            }
-            else if (tvProcess.text.endsWith('-')) {
-            }
-            else if (tvProcess.text.endsWith('.')) {
+            if (isLastOperator(tvProcess)) {
             } else {
                 tvProcess.setText(tvProcess.text.toString() + ".")
             }
         }
         btnDivide.setOnClickListener {
-            if (tvProcess.text.endsWith('*')) {
-            }
-            else if (tvProcess.text.endsWith('/')) {
-            }
-            else if (tvProcess.text.endsWith('+')) {
-            }
-            else if (tvProcess.text.endsWith('-')) {
-            }
-            else if (tvProcess.text.endsWith('.')) {
+            if (isLastOperator(tvProcess)) {
             } else {
                 tvProcess.setText(tvProcess.text.toString() + "/")
             }
         }
         btnMinus.setOnClickListener {
-            if (tvProcess.text.endsWith('*')) {
-            }
-            else if (tvProcess.text.endsWith('/')) {
-            }
-            else if (tvProcess.text.endsWith('+')) {
-            }
-            else if (tvProcess.text.endsWith('-')) {
-            }
-            else if (tvProcess.text.endsWith('.')) {
-            }
-            else {
+            if (isLastOperator(tvProcess)) {
+            } else {
                 tvProcess.setText(tvProcess.text.toString() + "-")
             }
         }
         btnPlus.setOnClickListener {
-            if (tvProcess.text.endsWith('*')) {
-            }
-            else if (tvProcess.text.endsWith('/')) {
-            }
-            else if (tvProcess.text.endsWith('+')) {
-            }
-            else if (tvProcess.text.endsWith('-')) {
-            }
-            else if (tvProcess.text.endsWith('.')) {
+            if (isLastOperator(tvProcess)) {
+
             } else {
                 tvProcess.setText(tvProcess.text.toString() + "+")
             }
@@ -229,7 +185,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         //****************Result / Equal Button onclick function*******************
         //***************Uses EvalEx Library: https://github.com/uklimaschewski/EvalEx ********************
         //************Converts String into arithmetic operation and displays the result in tvResult**************
@@ -241,15 +196,27 @@ class MainActivity : AppCompatActivity() {
                 var buffer = tvProcessString
                 buffer = buffer.substring(0, buffer.length - 1)
                 var expression: Expression = Expression(buffer)
+                expression.setPrecision(2);
                 var result: BigDecimal = expression.eval()
-                tvResult.setText(result.toString())
+                tvResult.setText(result.toPlainString())
 
             } else {
                 var expression: Expression = Expression(tvProcess.text.toString())
                 var result: BigDecimal = expression.eval()
-                tvResult.setText(result.toString())
+                expression.setPrecision(2);
+                tvResult.setText(result.toPlainString())
             }
         }
     }
-}
 
+
+    private fun isLastOperator(textView : TextView) : Boolean {
+        if (textView.text.endsWith('*') || textView.text.endsWith('/') || textView.text.endsWith('+') || textView.text.endsWith('-') || textView.text.endsWith('.')) {
+            return true
+    } else {
+            return false
+        }
+    }
+
+
+}
